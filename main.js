@@ -5,7 +5,7 @@ new Vue ({
             {
                 id: 1586934917210,
                 unit: '罐',
-                category: '梅酒',
+                category: '梅酒', 
                 title: '白鶴 梅酒原酒',
                 origin_price: 650,
                 price: 599,
@@ -27,7 +27,7 @@ new Vue ({
                 imageUrl: 'https://cdn.shopify.com/s/files/1/0028/9669/1264/products/L02911_e1dd2d6a-445a-448d-8649-71127fe888b3_2000x.png?v=1580480478',
             },
         ],
-        temProduct:[]         
+        temProduct:{}         
     },
     methods:{
         openModel(newProduct,item){
@@ -37,8 +37,10 @@ new Vue ({
                 console.log('new');
                 break;    //阻止已執行的區塊繼續執行
                 case'edit':
+                this.temProduct = Object.assign({},item);
                 $('#productModal').modal('show');
                 console.log('edit');
+                console.log(this.products[0].title);
                 break;
                 case'delete':
                 $('#productModal').modal('show');  

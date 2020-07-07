@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-</head>
+</head> 
 <body>
     <div id="app">
         <div class="Add" ><button type="button" class="btn btn-primary" @click="openModel('new')">建立商品</button></div>
@@ -34,8 +34,8 @@
                 </td>
                 <td>
                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-outline-info" @click="openModel('edit')">編輯</button>
-                        <button type="button" class="btn btn-outline-danger" @click="openModel('delete')">刪除</button>
+                        <button class="btn btn-outline-info" @click="openModel('edit',item)">編輯</button>
+                        <button class="btn btn-outline-danger" @click="openModel('delete',item)">刪除</button>
                     </div>
                 </td>
               </tr>
@@ -56,11 +56,12 @@
                     <div class="col-md-4" style="height: 600px;">
                       <div>
                         <label for="imageUrl">輸入圖片網址</label>
-                        <input id="imgUrl" type="text" class="form-control" placeholder="請輸入商品名稱">
+                        <input id="imageUrl" v-model="temProduct.imageUrl" type="text" class="form-control" placeholder="請輸入商品網址" >
                       </div>
                       <hr/>
-                      <div>
-                        <img src="https://images.unsplash.com/photo-1589837687411-50a9efe9bfae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80" alt="" style="width: 100%;">
+                      <!-- 7.8..02.36 -->
+                      <div>   
+                        <img class="img-fluid" :src = "temProduct.imageUrl" alt="" style="width: 100%;">
                       </div>
                     </div>
                     <div class="col-md-8" style="height: 600px;">     
@@ -69,14 +70,14 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label for="title">標題</label>
-                              <input id="title" type="text" class="form-control" placeholder="請輸入商品名稱">
+                              <input id="title" v-model="temProduct.title" type="text" class="form-control" placeholder="請輸入商品名稱">
                             </div>
                           </div>
 
                           <div class="col-md-6" >
                             <div class="form-group">
-                              <label for="title">分類</label>
-                              <input id="title" type="text" class="form-control" placeholder="請輸入商品分類">
+                              <label for="category">分類</label>
+                              <input id="category" v-model="temProduct.category" type="text" class="form-control" placeholder="請輸入商品分類">
                             </div>
                           </div> 
                         </div>
@@ -84,15 +85,15 @@
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group">
-                              <label for="title">原價</label>
-                              <input id="title" type="text" class="form-control" placeholder="請輸入商品名稱">
+                              <label for="origin_price">原價</label>
+                              <input id="origin_price" v-model="temProduct.origin_price" type="text" class="form-control" placeholder="請輸入商品原價">
                             </div>
                           </div> 
 
                           <div class="col-md-6">
                             <div class="form-group">
-                              <label for="title">售價</label>
-                              <input id="title" type="text" class="form-control" placeholder="請輸入商品名稱">
+                              <label for="price">售價</label>
+                              <input id="price" v-model="temProduct.price" type="text" class="form-control" placeholder="請輸入商品售價">
                             </div>
                           </div> 
                         </div>
@@ -102,8 +103,8 @@
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label for="exampleFormControlTextarea1">產品敘述</label>
-                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="請輸入產品敘述"></textarea>
+                              <label for="description">產品敘述</label>
+                              <textarea class="form-control"  id="description" v-model="temProduct.description" rows="3" placeholder="請輸入產品敘述"></textarea>
                             </div>
                           </div> 
                         </div>
@@ -111,8 +112,8 @@
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label for="exampleFormControlTextarea1">產品說明</label>
-                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="請輸入產品說明"></textarea>
+                              <label for="content">產品說明</label>
+                              <textarea class="form-control" id="content" v-model="temProduct.content" rows="3" placeholder="請輸入產品說明"></textarea>
                             </div>
                           </div> 
                         </div>
@@ -120,7 +121,7 @@
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="on" value="option1">
                               <label class="form-check-label" for="inlineRadio1">是否啟用</label>
                             </div>
                           </div> 
