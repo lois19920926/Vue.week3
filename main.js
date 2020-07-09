@@ -26,6 +26,18 @@ new Vue ({
                 is_enabled: 1,
                 imageUrl: 'https://cdn.shopify.com/s/files/1/0028/9669/1264/products/L02911_e1dd2d6a-445a-448d-8649-71127fe888b3_2000x.png?v=1580480478',
             },
+            {
+                id:1686934917710,
+                unit: '罐',
+                category: '威士忌',
+                title: '格蘭菲迪18年單一純麥威士忌',
+                origin_price: 1874,
+                price: 1499,
+                description: '喝爆就對了',
+                content: '700 ml 40.0% ',
+                is_enabled: 0,
+                imageUrl: 'https://fs1.shop123.com.tw/400126/upload/product/4001263302pic_outside_da5083269088.png',
+            },
         ],
         temProduct:{}         
     },
@@ -45,7 +57,7 @@ new Vue ({
                 this.temProduct = Object.assign({},item);
                 $('#deleteProductmodal').modal('show');  
                 console.log('delete');         
-                break;                            
+                break;                           
                 default:
                 break;
             }          
@@ -79,6 +91,18 @@ new Vue ({
             });
           }
           $('#deleteProductmodal').modal('hide')  
+       },
+       clearAll(){
+        const id = this.temProduct.id  
+        this.temProduct = {};
+        this.temProduct.id = id;
+        console.log('clearAll');
+       },
+       cenceled(){
+        this.temProduct = {};
+        $('#productModal').modal('hide'); 
+        $('#deleteProductmodal').modal('hide') ;
+        console.log('cenceled');
        },  
        
     },
