@@ -40,20 +40,46 @@ new Vue ({
                 this.temProduct = Object.assign({},item);
                 $('#productModal').modal('show');
                 console.log('edit');
-                console.log(this.products[0].title);
                 break;
                 case'delete':
-                $('#productModal').modal('show');  
-                console.log('delete'); 
+                this.temProduct = Object.assign({},item);
+                $('#deleteProductmodal').modal('show');  
+                console.log('delete');         
                 break;                            
                 default:
                 break;
             }          
         },
-        updateProduct(checkProduct,item){
-            console.log('update')
-        }
-
-
+        updateProduct(){
+            if(this.temProduct.id){
+                const id = this.temProduct.id;
+                this.products.forEach((item,i) => {
+                    if (item.id === id){
+                        this.products[i] = this.temProduct;
+                        console.log('ttrue');
+                    }                  
+                }); 
+            } else {
+                const id = new Date().getTime();
+                this.temProduct.id = id;
+                this.products.push(this.temProduct);
+                console.log('new');
+            }
+            this.temProduct={};
+            $('#productModal').modal('hide'); 
+       },
+       checkDelete(){   
+        if (this.temProduct.id) {
+            const id = this.temProduct.id;
+            this.products.forEach((item, i) => {
+              if (item.id === id) {
+                this.products.splice(i, 1);
+                this.temProduct = {};
+              }
+            });
+          }
+          $('#deleteProductmodal').modal('hide')  
+       },  
+       
     },
 });
